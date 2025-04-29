@@ -6,6 +6,9 @@ public class array {
         ArrayList<String> xxxx  = new ArrayList<String>();
         xxxx.add("****");
 
+        if (System.in(x))
+
+
         System.out.println();
 
 
