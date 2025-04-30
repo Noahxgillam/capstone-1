@@ -1,15 +1,26 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class array {
-    public static void main(String[] args) {
+    private static ArrayList<List> transactions(String List) {
+        ArrayList<List> list = new ArrayList<>();
 
-        ArrayList<String> xxxx  = new ArrayList<String>();
-        xxxx.add("****");
+        try {
+            FileReader fileReader = new FileReader("transactions.csv.txt");
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
 
-        if (System.in(x))
+            String input;
+            while ((input = bufferedReader.readLine()) != null) {
+                System.out.println(input);
+            }
+                bufferedReader.close();
 
-
-        System.out.println();
+            }
+            catch(IOException e) {
+                e.printStackTrace();
+            }
 
 
     }

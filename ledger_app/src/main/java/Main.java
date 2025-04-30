@@ -1,3 +1,5 @@
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -7,9 +9,8 @@ public class Main {
         System.out.println("Welcome user \n What would you like to do? " +
                 "\n D) Add Deposit \n P) Make payment (Debit) \n L) Ledger" +
                 "\n X) Exit");
-        Scanner input = scanner(System.in);
-try {
+}
+
 
     }
-}
 
