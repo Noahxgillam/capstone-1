@@ -55,6 +55,9 @@ public class Main {
             String[] lineParts = line.split("\\|");
 
             Transaction newLedgerEntry = new Transaction();
+            if (lineParts[0].equals("date")) {
+                continue;
+            }
 
             LocalDate date = LocalDate.parse(lineParts[0]);
             newLedgerEntry.setDate(date);
@@ -74,6 +77,7 @@ public class Main {
 
     static void saveLedger() {
         try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(filePath))) {
+            fileWriter.write("date|time|description|vendor|amount\n");
             for (Transaction t : ledger) {
                 fileWriter.write(t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount());
                 fileWriter.newLine();
