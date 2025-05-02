@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -12,7 +11,43 @@ public class Main {
 
     static Scanner scanner = new Scanner(System.in);
 
-    static void loadTransaction() throws IOException {
+
+    public static void main(String[] args) throws IOException {
+        loadTransactions();
+
+        boolean running = true;
+        while(running) {
+            System.out.println("Welcome user \n What would you like to do? " +
+                    "\n D) Add Deposit \n P) Make payment (Debit) \n L) Ledger" +
+                    "\n X) Exit");
+            String choice = scanner.nextLine().strip().toUpperCase();
+
+            switch (choice) {
+                case "D":
+                    addDeposit();
+                    break;
+
+                case "P":
+                    addPayment();
+                    break;
+
+                case "L":
+                    viewLedger();
+                    break;
+
+                case "X":
+                    System.out.println("Exiting application");
+                    scanner.close();
+                    running = false;
+                    saveLedger();
+                    break;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }
+    }
+
+    static void loadTransactions() throws IOException {
         String filePath = "src/main/resources/transactions.csv";
 
         FileReader fileReader = new FileReader(filePath);
@@ -42,43 +77,10 @@ public class Main {
     }
 
 
-    public static void main(String[] args) throws IOException {
-        loadTransaction();
+    static void saveLedger() {
 
-        boolean running = true;
-        while(running) {
-            System.out.println("Welcome user \n What would you like to do? " +
-                    "\n D) Add Deposit \n P) Make payment (Debit) \n L) Ledger" +
-                    "\n X) Exit");
-            String choice = scanner.nextLine().strip().toUpperCase();
-
-            switch (choice) {
-                case "D":
-                    addDeposit();
-                    break;
-
-                case "P":
-                    addPayment();
-                    break;
-
-                case "L":
-                    viewLedger();
-                    break;
-
-                case "X":
-                    System.out.println("Exiting application");
-                    scanner.close();
-                    running = false;
-                    //saveLedger();
-                    break;
-                default:
-                    System.out.println("Invalid choice.");
-            }
-        }
+        // todo: save all the Transaction objects in the ledger (ArrayList<Transaction>) to file.
     }
-    //static void saveLedger() {
-
-    //}
 
     static void addDeposit() {
         System.out.print("Enter deposit description: ");
