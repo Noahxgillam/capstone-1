@@ -69,16 +69,16 @@ public class Main {
                     System.out.println("Exiting application");
                     scanner.close();
                     running = false;
-                    saveLedger();
+                    //saveLedger();
                     break;
                 default:
                     System.out.println("Invalid choice.");
             }
         }
     }
-    static void saveLedger() {
+    //static void saveLedger() {
 
-    }
+    //}
 
     static void addDeposit() {
         System.out.print("Enter deposit description: ");
