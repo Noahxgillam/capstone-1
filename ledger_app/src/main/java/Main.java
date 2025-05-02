@@ -1,6 +1,4 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -10,7 +8,7 @@ public class Main {
     static ArrayList<Transaction> ledger = new ArrayList<Transaction>();
 
     static Scanner scanner = new Scanner(System.in);
-
+    static String filePath = "src/main/resources/transactions.csv";
 
     public static void main(String[] args) throws IOException {
         loadTransactions();
@@ -48,7 +46,6 @@ public class Main {
     }
 
     static void loadTransactions() throws IOException {
-        String filePath = "src/main/resources/transactions.csv";
 
         FileReader fileReader = new FileReader(filePath);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -72,12 +69,19 @@ public class Main {
             double amount  = Double.parseDouble(lineParts[4]);
             newLedgerEntry.setAmount(amount);
             ledger.add(newLedgerEntry);
-            System.out.println("hi");
         }
     }
 
-
     static void saveLedger() {
+        try (BufferedWriter fileWriter = new BufferedWriter(new FileWriter(filePath))) {
+            for (Transaction t : ledger) {
+                fileWriter.write(t.getDate() + "|" + t.getTime() + "|" + t.getDescription() + "|" + t.getVendor() + "|" + t.getAmount());
+                fileWriter.newLine();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("File saved");
 
         // todo: save all the Transaction objects in the ledger (ArrayList<Transaction>) to file.
     }
