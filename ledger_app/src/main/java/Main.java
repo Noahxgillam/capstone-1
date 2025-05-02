@@ -82,8 +82,6 @@ public class Main {
             throw new RuntimeException(e);
         }
         System.out.println("File saved");
-
-        // todo: save all the Transaction objects in the ledger (ArrayList<Transaction>) to file.
     }
 
     static void addDeposit() {
